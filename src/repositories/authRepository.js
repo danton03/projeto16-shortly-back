@@ -11,5 +11,8 @@ export async function checkIfUserExists(email) {
 
 export async function handleCreateUser(user) {
   const { name, email, password } = user;
-  await connection.query('INSERT INTO users (name, email, password) VALUES ($1, $2, $3);', [name, email, password]);
+  await connection.query(
+    'INSERT INTO users (name, email, password) VALUES ($1, $2, $3);', 
+    [name, email, password]
+  );
 }

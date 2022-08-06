@@ -4,7 +4,7 @@ import { handleCreateUser } from "../repositories/authRepository.js";
 export async function createUser(req, res){
   const { user } = res.locals;
   try{
-    handleCreateUser(user);
+    await handleCreateUser(user);
     return res.sendStatus(201);
   }
   catch(error){
