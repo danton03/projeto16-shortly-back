@@ -17,3 +17,13 @@ export async function getShortUrl(id) {
   );
   return shortUrl;
 }
+
+export async function getUrl(shortUrl) {
+  const { rows: [url] } = await connection.query(
+    `SELECT urls.url 
+    FROM urls 
+    WHERE "shortUrl" = $1;`, 
+    [shortUrl]
+  );
+  return url;
+}

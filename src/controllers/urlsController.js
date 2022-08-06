@@ -28,3 +28,8 @@ export async function getShortUrlById(req, res){
     return res.sendStatus(500);
   }
 }
+
+export async function openShortUrl(req, res){
+  const { url } = res.locals;
+  res.redirect(302, url);
+}
