@@ -2,10 +2,11 @@ import { signUpSchema } from "../schemas/signUpSchema.js";
 import bcrypt from "bcrypt";
 import { checkIfUserExists } from "../repositories/authRepository.js";
 import dotenv from "dotenv";
+import { signInSchema } from "../schemas/signInSchema.js";
 
 dotenv.config();
 
-async function authMiddleware(req, res, next) {
+export async function signUpMiddleware(req, res, next) {
   const userData = req.body;
   
   //Validação do formato do corpo da requisição
@@ -21,7 +22,8 @@ async function authMiddleware(req, res, next) {
     if(userExists){
       return res.sendStatus(409);
     }
-  } catch (error) {
+  } 
+  catch (error) {
     return res.sendStatus(500);
   }
 
@@ -41,7 +43,37 @@ async function authMiddleware(req, res, next) {
   next();
 }
 
-/* const secretKey = process.env.SECRET_KEY;
-res.locals.secretKey = secretKey; */
+export async function signInMiddleware(req, res, next) {
+  const userData = req.body;
 
-export { authMiddleware };
+  const validateUser = signInSchema.validate(userData);
+  if(validateUser.error){ 
+    return res.sendStatus(422);
+  }
+
+  try {
+    const email = userData.email.toLowerCase();
+    const user = await checkIfUserExists(email);
+    
+    if(!user){
+      return res.sendStatus(401);
+    }
+
+    //comparação da senha
+    const { password } = userData;
+    const encyptedPassword = user.password;
+    const comparePassword = bcrypt.compareSync(password, encyptedPassword);
+
+    if(!comparePassword){
+      return res.sendStatus(401);
+    }
+
+    const secretKey = process.env.SECRET_KEY;
+    res.locals.secretKey = secretKey;
+    res.locals.user = user;
+    next();
+  } 
+  catch (error) {
+    return res.sendStatus(503);
+  }
+}
