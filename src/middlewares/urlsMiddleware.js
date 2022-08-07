@@ -22,7 +22,8 @@ export async function getUrlMiddleware(req, res, next) {
     if(!urlData){
       return res.sendStatus(404);
     }
-    await updateCount(shortUrl);
+
+    await updateCount(shortUrl); //atualiza a contagem de visitas
     res.locals.url = urlData.url;
     next();
   } catch {
