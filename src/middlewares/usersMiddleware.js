@@ -11,7 +11,7 @@ export async function getUserUrlsMiddleware(req, res, next) {
 
     res.locals.user = user;
     next();
-  } catch (error){
+  } catch{
     return res.sendStatus(500);
   }
 }
