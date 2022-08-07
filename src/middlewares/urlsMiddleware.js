@@ -1,4 +1,4 @@
-import { getUrl } from "../repositories/urlsRepository.js";
+import { getUrl, searchUrl } from "../repositories/urlsRepository.js";
 import { urlSchema } from "../schemas/urlSchema.js";
 
 export async function shortenUrlMiddleware(req, res, next) {
@@ -26,6 +26,27 @@ export async function getUrlMiddleware(req, res, next) {
     res.locals.url = urlData.url;
     next();
   } catch {
+    return res.sendStatus(500);
+  }
+}
+
+export async function deleteUrlMiddleware(req, res, next) {
+  const { id } = req.params;
+  const { userId } = res.locals;
+  try {
+    const urlData = await searchUrl(id);
+  
+    if(!urlData){
+      return res.sendStatus(404);
+    }
+
+    if(urlData.createdBy !== userId){
+      return res.sendStatus(401);
+    }
+  
+    next();
+  } catch (error) {
+    
     return res.sendStatus(500);
   }
 }

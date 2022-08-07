@@ -27,3 +27,20 @@ export async function getUrl(shortUrl) {
   );
   return url;
 }
+
+export async function searchUrl(id) {
+  const {rows: [urlData]} = await connection.query(
+    `SELECT * FROM urls 
+    WHERE ID = $1;`, 
+    [id]
+  );
+  return urlData;
+}
+
+export async function deleteUrl(id) {
+  await connection.query(
+    `DELETE FROM urls 
+    WHERE ID = $1;`, 
+    [id]
+  );
+}
