@@ -1,4 +1,4 @@
-import { getUrl, searchUrl } from "../repositories/urlsRepository.js";
+import { getUrl, searchUrl, updateCount } from "../repositories/urlsRepository.js";
 import { urlSchema } from "../schemas/urlSchema.js";
 
 export async function shortenUrlMiddleware(req, res, next) {
@@ -22,7 +22,7 @@ export async function getUrlMiddleware(req, res, next) {
     if(!urlData){
       return res.sendStatus(404);
     }
-  
+    await updateCount(shortUrl);
     res.locals.url = urlData.url;
     next();
   } catch {

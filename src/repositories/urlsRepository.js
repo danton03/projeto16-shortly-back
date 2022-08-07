@@ -28,6 +28,15 @@ export async function getUrl(shortUrl) {
   return url;
 }
 
+export async function updateCount(shortUrl) {
+   await connection.query(
+    `UPDATE urls
+    SET "visitCount" = "visitCount"+1
+    WHERE "shortUrl" = $1;`, 
+    [shortUrl]
+  );
+}
+
 export async function searchUrl(id) {
   const {rows: [urlData]} = await connection.query(
     `SELECT * FROM urls 
