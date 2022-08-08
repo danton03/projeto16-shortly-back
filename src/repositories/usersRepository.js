@@ -25,7 +25,7 @@ export async function getUserData(user) {
 
   const userData = {
     ...user, 
-    shortenedUrls: userUrls
+    shortenedUrls: userUrls.reverse()
   }
 
   return userData;
