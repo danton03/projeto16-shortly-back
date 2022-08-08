@@ -30,7 +30,7 @@ export async function getShortUrlById(req, res){
 
 export async function openShortUrl(req, res){
   const { url } = res.locals;
-  res.redirect(url);
+  res.redirect(200, url);
 }
 
 export async function deleteShortUrl(req, res){
