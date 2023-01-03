@@ -269,7 +269,7 @@ GET /ranking
 ]
 ```
 
-- Responde com *status code* 200 e um *JSON* com os dados do Ranking
+- Responde com *status code* `200` e um *JSON* com os dados do Ranking
 - Limitado a **10 usuários.**
 - A lista é **ordenada** pela soma de visitas nos links.
 - Caso necessário, a lista incluirá usuários cujos *links* não tiveram nenhuma visita.
@@ -326,19 +326,11 @@ ou
   npm start
 ```
 
-</br>
-
 ## Créditos
 
 -   [Awesome Badges](https://github.com/Envoy-VC/awesome-badges)
 -   [Shorts icon por Icons8](https://icons8.com/icon/16586/shorts)
 
-</br>
-
 ## Autores
 
 -   [Danton Matheus](https://github.com/danton03)
-
-<br/>
-
-#
