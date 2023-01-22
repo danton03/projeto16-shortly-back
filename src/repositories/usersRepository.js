@@ -2,9 +2,9 @@ import connection from "../dbStrategy/postgres.js";
 
 export async function searchUser(id) {
   const {rows: [user]} = await connection.query(
-    `SELECT users.id, users.name, SUM(urls."visitCount") AS "visitCount"
+    `SELECT users.id, users.name, SUM(COALESCE(urls."visitCount", 0)) AS "visitCount"
     FROM users
-    JOIN urls 
+    LEFT JOIN urls 
     ON urls."createdBy" = users.id
     WHERE users.id = $1
     GROUP BY users.id;`, 
