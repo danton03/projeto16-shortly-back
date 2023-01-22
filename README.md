@@ -318,9 +318,16 @@ por HTTPS
   npm install
 ```
 
-5- Crie um banco de dados postgres na sua máquina (OBS.: Certifique-se de informar a URL no arquivo .env)
+5- Crie um banco de dados postgres na sua máquina. Você pode utilizar o terminal ou o pgAdmin. 
 
-6- Inicie o servidor da aplicação
+OBS.: Certifique-se de informar a URL do database no arquivo .env
+
+6- Execute o dump para criar as tabelas. *(Esse arquivo se encontra na raíz do projeto)*
+```bash
+  psql -U <username> -f <caminho_para_o_dump>/dump.sql
+```
+
+7- Inicie o servidor da aplicação
 
 ```bash
   npm start
