@@ -1,6 +1,4 @@
-# Projeto 16 - Shortly
-Segundo projeto do módulo de banco de dados postgres da Driven Education
-
+# Projeto 16 - Shortly (Back-end)
 
 <p align="center">
   <img src="https://img.icons8.com/color/240/null/shorts.png"/>
@@ -296,20 +294,22 @@ Você deve criar esse esse arquivo na raíz do projeto e populá-lo seguindo as 
 
 2- Faça um clone do projeto:
 
-```bash (for SSH)
+por SSH
+```bash 
   git clone git@github.com:danton03/projeto16-shortly-back.git
 ```
 
 ou
 
-```bash (for HTTPS)
+por HTTPS
+```bash 
   git clone https://github.com/danton03/projeto16-shortly-back.git
 ```
 
 3- Entre no diretório do projeto
 
 ```bash
-  cd projeto16-shortly
+  cd projeto16-shortly-back
 ```
 
 4- Instale as dependências
